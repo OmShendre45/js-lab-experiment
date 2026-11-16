@@ -1,234 +1,384 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Theme Settings</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #e8edf1;
-      color: #2d3a45;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
+<title>Theme Settings</title>
 
-    body.dark-theme {
-      background: #1a1d22;
-      color: #edf4ff;
-    }
+<style>
 
-    .page {
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #e8edf1;
+    color: #2d3a45;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Dark theme for complete page */
+body.dark-theme {
+    background: #1a1d22;
+    color: #edf4ff;
+}
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* Settings box */
+.settings-panel {
+    width: min(72vw, 760px);
+    min-height: 330px;
+    background: rgba(233, 236, 239, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 18px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+    padding: 30px 32px 26px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, border 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Dark theme settings box */
+body.dark-theme .settings-panel {
+    background: #292e36;
+    border: 1px solid #444b55;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    margin: 0 0 20px;
+    font-size: clamp(2.4rem, 3vw, 4rem);
+    font-weight: 700;
+    color: rgba(38, 47, 58, 0.88);
+    letter-spacing: -0.04em;
+    transition: color 0.3s ease;
+}
+
+body.dark-theme h1 {
+    color: #edf4ff;
+}
+
+.label-text {
+    margin-bottom: 18px;
+    font-size: 18px;
+    color: rgba(53, 63, 73, 0.92);
+}
+
+body.dark-theme .label-text {
+    color: #cbd5e1;
+}
+
+/* Dropdown */
+select {
+    width: 185px;
+    height: 36px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.22);
+    color: #2f3d4d;
+    font-size: 18px;
+    padding: 0 36px 0 14px;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme select {
+    background-color: #343b46;
+    color: white;
+    border-color: #555;
+}
+
+.button-row {
+    margin-top: 26px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Buttons */
+.action-btn {
+    min-width: 220px;
+    height: 42px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgba(39, 48, 59, 0.9);
+    background: #add8e6;
+    transition: transform 0.12s ease, filter 0.2s ease,
+                background-color 0.2s ease;
+    font-weight: 500;
+}
+
+.action-btn:hover {
+    filter: brightness(0.98);
+    background-color: #87ceeb;
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+    background-color: #6495ed;
+}
+
+.action-btn.clear {
+    margin-top: 22px;
+    width: 220px;
+}
+
+/* Status message */
+#statusMessage {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+body.dark-theme #statusMessage {
+    color: #90cdf4;
+}
+
+/* Mobile responsive design */
+@media (max-width: 700px) {
 
     .settings-panel {
-      width: min(72vw, 760px);
-      min-height: 330px;
-      background: rgba(233, 236, 239, 0.9);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      border-radius: 18px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
-      padding: 30px 32px 26px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    h1 {
-      margin: 0 0 20px;
-      font-size: clamp(2.4rem, 3vw, 4rem);
-      font-weight: 700;
-      color: rgba(38, 47, 58, 0.88);
-      letter-spacing: -0.04em;
-    }
-
-    .label-text {
-      margin-bottom: 18px;
-      font-size: 18px;
-      color: rgba(53, 63, 73, 0.92);
-    }
-
-    select {
-      width: 185px;
-      height: 36px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.22);
-      color: #2f3d4d;
-      font-size: 18px;
-      padding: 0 36px 0 14px;
-      appearance: none;
-      background-image: linear-gradient(45deg, transparent 50%, #5d6670 50%),
-        linear-gradient(135deg, #5d6670 50%, transparent 50%);
-      background-position: calc(100% - 18px) calc(50% - 3px), calc(100% - 12px) calc(50% - 3px);
-      background-size: 6px 6px, 6px 6px;
-      background-repeat: no-repeat;
-      outline: none;
-      cursor: pointer;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        width: 92vw;
+        padding: 24px 18px 20px;
     }
 
     .button-row {
-      margin-top: 26px;
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      width: 100%;
-    }
-
-    /* Updated button styles with light blue color */
-    .action-btn {
-      min-width: 220px;
-      height: 42px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      color: rgba(39, 48, 59, 0.9);
-      background: #add8e6; /* Light blue */
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
-      transition: transform 0.12s ease, filter 0.2s ease, background-color 0.2s ease;
-      font-weight: 500;
-    }
-
-    /* Hover state with slightly darker blue */
-    .action-btn:hover {
-      filter: brightness(0.98);
-      background-color: #87ceeb; /* Hover color */
-    }
-
-    /* Active state with even darker blue */
-    .action-btn:active {
-      transform: translateY(1px);
-      background-color: #6495ed; /* Active color */
-    }
-
-    .action-btn.clear {
-      margin-top: 22px;
-      width: 220px;
-    }
-
-    @media (max-width: 700px) {
-      .settings-panel {
-        width: 92vw;
-        padding: 24px 18px 20px;
-      }
-
-      .button-row {
         flex-direction: column;
         align-items: center;
-      }
+    }
 
-      .action-btn,
-      .action-btn.clear {
+    .action-btn,
+    .action-btn.clear {
         width: 100%;
         max-width: 280px;
-      }
     }
-  </style>
+}
+
+</style>
 </head>
+
 <body>
-  <div class="page">
+
+<div class="page">
+
     <div class="settings-panel">
-      <h1>Theme Settings</h1>
 
-      <div class="label-text">Select your preferred theme:</div>
+        <h1>Theme Settings</h1>
 
-      <label for="themeSelect" style="position:absolute;left:-9999px;">Theme</label>
-      <select id="themeSelect" aria-label="Choose theme">
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
+        <div class="label-text">
+            Select your preferred theme:
+        </div>
 
-      <div class="button-row">
-        <button class="action-btn" type="button" id="saveLocalBtn">Save using localStorage</button>
-        <button class="action-btn" type="button" id="saveSessionBtn">Save using sessionStorage</button>
-      </div>
+        <label for="themeSelect"
+               style="position:absolute;left:-9999px;">
+            Theme
+        </label>
 
-      <button class="action-btn clear" type="button" id="clearBtn">Clear Preferences</button>
+        <select id="themeSelect" aria-label="Choose theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select>
 
-      <!-- Element to display status message -->
-      <p id="statusMessage" style="margin-top:20px; font-weight:bold;"></p>
+        <div class="button-row">
+
+            <button class="action-btn"
+                    type="button"
+                    id="saveLocalBtn">
+                Save using localStorage
+            </button>
+
+            <button class="action-btn"
+                    type="button"
+                    id="saveSessionBtn">
+                Save using sessionStorage
+            </button>
+
+        </div>
+
+        <button class="action-btn clear"
+                type="button"
+                id="clearBtn">
+            Clear Preferences
+        </button>
+
+        <p id="statusMessage"></p>
+
     </div>
-  </div>
 
-  <script>
-    const bodyEl = document.body;
-    const themeSelect = document.getElementById('themeSelect');
-    const saveLocalBtn = document.getElementById('saveLocalBtn');
-    const saveSessionBtn = document.getElementById('saveSessionBtn');
-    const clearBtn = document.getElementById('clearBtn');
-    const statusMessage = document.getElementById('statusMessage');
+</div>
 
-    function applyTheme(theme) {
-      const chosen = theme === 'dark' ? 'dark' : 'light';
-      bodyEl.classList.toggle('dark-theme', chosen === 'dark');
-      themeSelect.value = chosen;
+<script>
+
+/* Selecting HTML elements */
+
+const bodyEl = document.body;
+
+const themeSelect = document.getElementById("themeSelect");
+
+const saveLocalBtn = document.getElementById("saveLocalBtn");
+
+const saveSessionBtn = document.getElementById("saveSessionBtn");
+
+const clearBtn = document.getElementById("clearBtn");
+
+const statusMessage = document.getElementById("statusMessage");
+
+
+/* Function to apply selected theme */
+
+function applyTheme(theme) {
+
+    const chosen = theme === "dark" ? "dark" : "light";
+
+    bodyEl.classList.toggle(
+        "dark-theme",
+        chosen === "dark"
+    );
+
+    themeSelect.value = chosen;
+
+}
+
+
+/* Function to save theme */
+
+function saveTheme(storageType) {
+
+    const selectedTheme = themeSelect.value;
+
+    if (storageType === "local") {
+
+        localStorage.setItem(
+            "themePreference",
+            selectedTheme
+        );
+
+        sessionStorage.removeItem("themePreference");
+
+        statusMessage.textContent =
+            `Theme "${selectedTheme}" saved in localStorage.`;
+
+    } else {
+
+        sessionStorage.setItem(
+            "themePreference",
+            selectedTheme
+        );
+
+        localStorage.removeItem("themePreference");
+
+        statusMessage.textContent =
+            `Theme "${selectedTheme}" saved in sessionStorage.`;
+
     }
 
-    function saveTheme(storageType) {
-      const selectedTheme = themeSelect.value;
-      if (storageType === 'local') {
-        localStorage.setItem('themePreference', selectedTheme);
-        sessionStorage.removeItem('themePreference');
-        statusMessage.textContent = `Theme "${selectedTheme}" saved in localStorage.`;
-      } else {
-        sessionStorage.setItem('themePreference', selectedTheme);
-        localStorage.removeItem('themePreference');
-        statusMessage.textContent = `Theme "${selectedTheme}" saved in sessionStorage.`;
-      }
-      applyTheme(selectedTheme);
-    }
+    applyTheme(selectedTheme);
 
-    function clearPreferences() {
-      localStorage.removeItem('themePreference');
-      sessionStorage.removeItem('themePreference');
-      applyTheme('light');
-      statusMessage.textContent = 'Preferences cleared.';
-    }
+}
 
-    function initializeTheme() {
-      const savedLocal = localStorage.getItem('themePreference');
-      const savedSession = sessionStorage.getItem('themePreference');
-      const initialTheme = savedLocal || savedSession || 'light';
-      applyTheme(initialTheme);
-    }
 
-    // Event Listeners
-    themeSelect.addEventListener('change', () => {
-      applyTheme(themeSelect.value);
-    });
+/* Function to clear preferences */
 
-    document.getElementById('saveLocalBtn').addEventListener('click', () => {
-      saveTheme('local');
-    });
+function clearPreferences() {
 
-    document.getElementById('saveSessionBtn').addEventListener('click', () => {
-      saveTheme('session');
-    });
+    localStorage.removeItem("themePreference");
 
-    document.getElementById('clearBtn').addEventListener('click', () => {
-      clearPreferences();
-    });
+    sessionStorage.removeItem("themePreference");
 
-    // Initialize on page load
-    initializeTheme();
-  </script>
+    applyTheme("light");
+
+    statusMessage.textContent = "Preferences cleared.";
+
+}
+
+
+/* Function to load saved theme */
+
+function initializeTheme() {
+
+    const savedLocal =
+        localStorage.getItem("themePreference");
+
+    const savedSession =
+        sessionStorage.getItem("themePreference");
+
+    const initialTheme =
+        savedLocal || savedSession || "light";
+
+    applyTheme(initialTheme);
+
+}
+
+
+/* Change theme when dropdown changes */
+
+themeSelect.addEventListener("change", function() {
+
+    applyTheme(themeSelect.value);
+
+    statusMessage.textContent =
+        "Theme preview changed. Click Save to store your preference.";
+
+});
+
+
+/* Local storage button */
+
+saveLocalBtn.addEventListener("click", function() {
+
+    saveTheme("local");
+
+});
+
+
+/* Session storage button */
+
+saveSessionBtn.addEventListener("click", function() {
+
+    saveTheme("session");
+
+});
+
+
+/* Clear preferences button */
+
+clearBtn.addEventListener("click", function() {
+
+    clearPreferences();
+
+});
+
+
+/* Initialize theme when page loads */
+
+initializeTheme();
+
+</script>
+
 </body>
 </html>
