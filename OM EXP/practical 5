@@ -471,6 +471,21 @@
 
     }
 
+
+. Software/Tools Required:
+1.	Visual Studio Code (VS Code) 
+2.	Google Chrome 
+3.	HTML5 
+4.	JavaScript
+
+3. Theory:
+JavaScript arrays are used to store and manage multiple values, while objects are used to store data in key-value pairs. Array methods such as push(), reduce(), and forEach() can be used to add, process, and calculate data efficiently.
+In this experiment, a shopping cart is created using an array of product objects. Each object stores the product name and price. The push() method is used to add products to the cart, while reduce() is used to calculate the total amount. A discount is applied based on the total cart value. The calculated total, discount amount, and final payable amount are displayed in an order summary.
+
+
+Result/Conclusion:
+The experiment was successfully performed. The webpage demonstrated the use of JavaScript arrays, objects, and array methods to manage shopping cart data. The total amount was calculated and the appropriate discount was applied successfully. The final payable amount was displayed correctly in the order summary. The objectives of the experiment were achieved successfully.
+
 </script>
 
 </body>
