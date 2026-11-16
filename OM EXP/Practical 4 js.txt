@@ -1,44 +1,268 @@
+
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Advanced Palindrome Checker</title>
+
     <style>
-        /* This positions your name and PRN at the top right */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #141e30, #243b55);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
         .header {
             position: absolute;
-            top: 10px;
-            right: 20px;
-            font-family: Arial, sans-serif;
-            line-height: 1.2;
+            top: 20px;
+            right: 30px;
+            text-align: right;
+            line-height: 1.5;
+        }
+
+        .container {
+            background: white;
+            color: #222;
+            width: 380px;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: #243b55;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #243b55;
+        }
+
+        button {
+            padding: 11px 20px;
+            margin: 12px 5px;
+            border: none;
+            border-radius: 7px;
+            background: #243b55;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #141e30;
+        }
+
+        .clear {
+            background: #dc3545;
+        }
+
+        .clear:hover {
+            background: #b52a37;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .failure {
+            color: red;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .stats div {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .stats strong {
+            display: block;
+            font-size: 20px;
+            color: #243b55;
+            margin-bottom: 5px;
+        }
+
+        #reverse {
+            color: #555;
+            font-size: 14px;
+            margin-top: 10px;
+            word-break: break-word;
         }
     </style>
 </head>
+
 <body>
+
     <div class="header">
         <strong>Kanak</strong><br>
         PRN: 1193
     </div>
 
-    <h2>Palindrome Checker</h2>
-    <input type="text" id="userInput" placeholder="Enter a name">
-    <button onclick="checkPalindrome()">Check</button>
-    <p id="result"></p>
+    <div class="container">
+
+        <h2>Palindrome Checker</h2>
+
+        <p class="subtitle">
+            Check whether a word or sentence reads the same backwards.
+        </p>
+
+        <input
+            type="text"
+            id="userInput"
+            placeholder="Enter a word or sentence"
+            onkeydown="handleEnter(event)"
+        >
+
+        <br>
+
+        <button onclick="checkPalindrome()">Check Palindrome</button>
+        <button class="clear" onclick="clearData()">Clear</button>
+
+        <p id="result"></p>
+        <p id="reverse"></p>
+
+        <div class="stats">
+
+            <div>
+                <strong id="total">0</strong>
+                Total Checks
+            </div>
+
+            <div>
+                <strong id="yes">0</strong>
+                Palindromes
+            </div>
+
+            <div>
+                <strong id="no">0</strong>
+                Not Palindromes
+            </div>
+
+        </div>
+
+    </div>
 
     <script>
+
+        let totalChecks = 0;
+        let palindromeCount = 0;
+        let notPalindromeCount = 0;
+
         function checkPalindrome() {
-            const input = document.getElementById("userInput").value;
-            // Clean the string: remove non-alphanumeric and lowercase
-            const cleanStr = input.toLowerCase().replace(/[^a-z0-9]/g, '');
-            // Reverse the string
-            const reversedStr = cleanStr.split('').reverse().join('');
-            const resultElement = document.getElementById("result");
-            if (cleanStr !== '' && cleanStr === reversedStr) {
-                resultElement.innerHTML = `- ${(input)} is a palindrome! (Reversed: ${reversedStr})`;
-            } else if (cleanStr === "") {
-                resultElement.innerHTML = "Please enter a value.";
-            } else {
-                resultElement.innerHTML = `- ${(input)} is not a palindrome. (Reversed: ${reversedStr})`;
+
+            let input = document.getElementById("userInput").value;
+
+            let cleanStr = input
+                .toLowerCase()
+                .replace(/[^a-z0-9]/g, '');
+
+            let reversedStr = cleanStr
+                .split('')
+                .reverse()
+                .join('');
+
+            let result = document.getElementById("result");
+            let reverse = document.getElementById("reverse");
+
+            if (cleanStr === "") {
+
+                result.innerHTML = "Please enter a valid value!";
+                result.className = "failure";
+                reverse.innerHTML = "";
+                return;
+
             }
+
+            totalChecks++;
+
+            if (cleanStr === reversedStr) {
+
+                palindromeCount++;
+
+                result.innerHTML = "✓ It is a Palindrome!";
+                result.className = "success";
+
+            } else {
+
+                notPalindromeCount++;
+
+                result.innerHTML = "✗ It is Not a Palindrome!";
+                result.className = "failure";
+
+            }
+
+            reverse.innerHTML =
+                "Reversed Text: " + reversedStr;
+
+            updateStats();
+
         }
+
+        function updateStats() {
+
+            document.getElementById("total").innerHTML =
+                totalChecks;
+
+            document.getElementById("yes").innerHTML =
+                palindromeCount;
+
+            document.getElementById("no").innerHTML =
+                notPalindromeCount;
+
+        }
+
+        function clearData() {
+
+            document.getElementById("userInput").value = "";
+            document.getElementById("result").innerHTML = "";
+            document.getElementById("reverse").innerHTML = "";
+
+            document.getElementById("userInput").focus();
+
+        }
+
+        function handleEnter(event) {
+
+            if (event.key === "Enter") {
+                checkPalindrome();
+            }
+
+        }
+
     </script>
+
 </body>
 </html>
