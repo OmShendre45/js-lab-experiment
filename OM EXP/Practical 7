@@ -271,3 +271,21 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+1.	Title: Perform DOM Traversal and Updates; Develop a To-Do List App with Add, Edit, and Delete Features.
+2. Software/Tools Required:
+1.	Visual Studio Code (VS Code) 
+2.	Google Chrome 
+3.	HTML5 
+4.	JavaScript
+
+3. Theory:
+The Document Object Model (DOM) represents an HTML document as a tree of elements. JavaScript can access and modify HTML elements dynamically using DOM methods such as getElementById(), querySelector(), createElement(), and remove().
+In this experiment, a To-Do List application is developed using HTML, CSS, and JavaScript. Users can enter a task and add it to the list. Each task contains a checkbox along with Edit and Delete buttons. The DOM is updated dynamically whenever a task is added, edited, deleted, or marked as completed. This demonstrates DOM traversal, element creation, modification, and removal.
+
+Result/Conclusion:
+The experiment was successfully performed. The To-Do List application demonstrated DOM traversal and dynamic DOM updates using JavaScript. Tasks were successfully displayed with checkboxes and Edit and Delete options. The application allowed tasks to be added, modified, deleted, and marked as completed. Thus, the objectives of the experiment were achieved successfully.
