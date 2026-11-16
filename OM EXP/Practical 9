@@ -382,3 +382,22 @@ initializeTheme();
 
 </body>
 </html>
+
+
+
+
+
+2. Software/Tools Required:
+1.	Visual Studio Code (VS Code) 
+2.	Google Chrome 
+3.	HTML5 
+4.	JavaScript
+
+3. Theory:
+Web Storage allows websites to store data in the user's browser. JavaScript provides two types of web storage: Local Storage and Session Storage. Local Storage stores data without an expiration time, while Session Storage stores data only for the current browser session.
+In this experiment, a Theme Settings webpage is created to allow the user to select a preferred theme such as Light or Dark. JavaScript is used to save the selected theme using localStorage and sessionStorage. The setItem() method is used to store preferences, while getItem() can be used to retrieve stored preferences. The clear() method is used to remove stored preferences. A message is displayed after successfully saving the selected theme.
+
+5. Result/Conclusion:
+The experiment was successfully performed. The To-Do List application demonstrated DOM traversal and dynamic DOM updates using JavaScript. Tasks were successfully displayed with checkboxes and Edit and Delete options. The application allowed tasks to be added, modified, deleted, and marked as completed. Thus, the objectives of the experiment were achieved successfully.
+
+
