@@ -262,6 +262,40 @@
 
         }
 
+
+Software Requirements / Tools Used
+1. Operating System: Windows 10/11
+2. Code Editor: Visual Studio Code (VS Code) / Notepad++
+3. Frontend Technologies:
+   - HTML – Used to create the structure of the webpage.
+   - CSS – Used to design and style the palindrome checker interface.
+   - JavaScript – Used to implement palindrome checking logic.
+4. Web Browser: Google Chrome / Microsoft Edge
+5. Technology: Client-side web development.
+2. Theory
+A palindrome is a word, number, or sentence that reads the same forward and backward.
+
+The Palindrome Checker is a web-based application developed using HTML, CSS, and JavaScript. It accepts input from the user and checks whether the entered word or sentence is a palindrome.
+
+Working of the application:
+1. HTML is used to create the input field, buttons, result section, and statistics section.
+2. CSS is used to provide an attractive user interface with colours, gradients, buttons, and styling.
+3. JavaScript takes the input entered by the user.
+4. The toLowerCase() function converts the input into lowercase.
+5. The replace() function removes spaces and special characters.
+6. The split() function converts the string into an array.
+7. The reverse() function reverses the array.
+8. The join() function converts the reversed array back into a string.
+9. The original cleaned string is compared with the reversed string.
+10. If both strings are equal, the input is a palindrome; otherwise, it is not a palindrome.
+Additional features:
+- Displays the reversed text.
+- Provides success and failure messages.
+- Maintains total checks, palindrome count, and non-palindrome count.
+- Supports checking through the Enter key.
+- Provides a Clear button to reset the input and result.
+3. Conclusion
+Thus, we successfully developed an Advanced Palindrome Checker using HTML, CSS, and JavaScript. The application checks whether a given word or sentence is a palindrome by comparing the original string with its reversed version. It also provides an attractive user interface, displays reversed text, maintains checking statistics, and supports keyboard interaction. Through this practical, we learned about string manipulation, JavaScript functions, DOM manipulation, event handling, and conditional statements.
     </script>
 
 </body>
