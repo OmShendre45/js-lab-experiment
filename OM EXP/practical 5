@@ -471,6 +471,11 @@
 
     }
 
+</script>
+
+</body>
+</html>
+
 
 . Software/Tools Required:
 1.	Visual Studio Code (VS Code) 
@@ -486,7 +491,3 @@ In this experiment, a shopping cart is created using an array of product objects
 Result/Conclusion:
 The experiment was successfully performed. The webpage demonstrated the use of JavaScript arrays, objects, and array methods to manage shopping cart data. The total amount was calculated and the appropriate discount was applied successfully. The final payable amount was displayed correctly in the order summary. The objectives of the experiment were achieved successfully.
 
-</script>
-
-</body>
-</html>
