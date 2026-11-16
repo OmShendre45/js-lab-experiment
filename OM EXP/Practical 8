@@ -187,3 +187,20 @@
 </script>
 </body>
 </html>
+
+
+Access and Validate Form Fields Using Events; Design a Gym Admission Form with Live Input Check.
+
+2. Software/Tools Required:
+1.	Visual Studio Code (VS Code) 
+2.	Google Chrome 
+3.	HTML5 
+4.	JavaScript
+
+3. Theory:
+JavaScript events are actions that occur on a webpage, such as input, change, focus, blur, and submit. Event handlers are used to execute JavaScript code when these events occur. DOM methods such as getElementById() are used to access and modify form fields.
+In this experiment, a Gym Admission Form is designed using HTML and CSS. JavaScript is used to access the form fields and perform live validation while the user enters information. The input event checks the entered values immediately and displays appropriate validation messages. Form submission is also validated to ensure that the required details are entered correctly before the form is submitted.
+
+
+Result/Conclusion:
+The experiment was successfully performed. The Gym Admission Form demonstrated the use of JavaScript events to access and validate form fields. Live input checks were performed while entering data, and validation messages were displayed accordingly. The form successfully accepted valid information and prevented invalid or incomplete data from being submitted. Thus, the objectives of the experiment were achieved successfully
