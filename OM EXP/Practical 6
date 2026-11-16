@@ -337,3 +337,20 @@ function clearAll(){
 
 </body>
 </html>
+
+
+
+
+Dot Extraction, and Text Analysis.
+2. Software/Tools Required:
+1.	Visual Studio Code (VS Code) 
+2.	Google Chrome 
+3.	HTML5 
+4.	JavaScript
+
+3. Theory:
+JavaScript provides various string functions to manipulate and analyze text. Functions such as toLowerCase(), toUpperCase(), trim(), split(), includes(), and replace() are commonly used for string processing. Regular Expressions (Regex) are patterns used to search, match, and validate text.
+In this experiment, JavaScript string functions and regular expressions are used to validate an email address, extract dots from text, and perform basic text analysis. Regex helps identify whether the entered email follows a valid format, while string functions are used to count, search, and process characters or words in the given text.
+
+Result/Conclusion:
+The experiment was successfully performed. String functions and Regular Expressions were used to validate email addresses, extract dots, and analyze text. The program correctly processed the given input and displayed the required results. The objectives of the experiment were achieved successfully.
