@@ -1,165 +1,476 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Discount Calculator for Stationery Shop</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stationery Shop Billing System</title>
+
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 24px;
-    color: #333;
-  }
-  label {
-    margin-right: 8px;
-  }
-  input {
-    width: 130px;
-    padding: 6px;
-    margin-right: 8px;
-  }
-  button {
-    padding: 6px 12px;
-    cursor: pointer;
-  }
-  .results {
-    margin-top: 18px;
-    max-width: 400px;
-  }
-  .summary-card {
-    border: 1px solid #ddd;
-    padding: 12px;
-    border-radius: 6px;
-    background: #fafafa;
-  }
-  .summary-card p {
-    margin: 6px 0;
-  }
-  .error {
-    color: #c00;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  th, td {
-    border: 1px solid #ccc;
-    padding: 6px;
-    text-align: left;
-  }
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #eef2f7;
+        margin: 0;
+        padding: 30px 15px;
+        color: #333;
+    }
+
+    .header {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        text-align: right;
+        line-height: 1.5;
+    }
+
+    .container {
+        max-width: 850px;
+        margin: 55px auto 20px;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #243b55;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #777;
+        margin-bottom: 25px;
+    }
+
+    .input-section {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr auto;
+        gap: 10px;
+        align-items: end;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 11px;
+        border: 1px solid #ccc;
+        border-radius: 7px;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: #243b55;
+    }
+
+    button {
+        padding: 11px 16px;
+        border: none;
+        border-radius: 7px;
+        background: #243b55;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    button:hover {
+        opacity: 0.85;
+    }
+
+    .add-btn {
+        background: #198754;
+    }
+
+    .remove-btn {
+        background: #dc3545;
+        padding: 7px 10px;
+    }
+
+    .clear-btn {
+        background: #dc3545;
+    }
+
+    .print-btn {
+        background: #198754;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 25px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+    }
+
+    th {
+        background: #243b55;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background: #f5f7fa;
+    }
+
+    .summary {
+        background: #f5f7fa;
+        padding: 20px;
+        margin-top: 25px;
+        border-radius: 10px;
+    }
+
+    .summary p {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 9px;
+    }
+
+    .discount {
+        color: #198754;
+        font-weight: bold;
+    }
+
+    .final {
+        font-size: 21px;
+        color: #243b55;
+        font-weight: bold;
+    }
+
+    .message {
+        text-align: center;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    @media(max-width: 650px) {
+        .input-section {
+            grid-template-columns: 1fr;
+        }
+
+        .container {
+            padding: 18px;
+        }
+
+        table {
+            font-size: 12px;
+        }
+
+        th, td {
+            padding: 7px;
+        }
+    }
+
+    @media print {
+        body {
+            background: white;
+            padding: 0;
+        }
+
+        .header,
+        .input-section,
+        .actions,
+        .remove-btn,
+        .subtitle {
+            display: none !important;
+        }
+
+        .container {
+            margin: 0;
+            box-shadow: none;
+        }
+    }
 </style>
 </head>
+
 <body>
 
-<h2>Stationery Shop Discount Calculator</h2>
+<div class="header">
+    <strong>Kanak</strong><br>
+    PRN: 1193
+</div>
 
-<!-- Input for product name -->
-<label for="product">Product:</label>
-<input type="text" id="product" placeholder="Product name" />
+<div class="container">
 
-<!-- Input for product price -->
-<label for="price">Price:</label>
-<input type="number" id="price" placeholder="Price" />
+    <h2>Stationery Shop Billing System</h2>
 
-<button onclick="addProduct()">Add Product</button>
+    <p class="subtitle">
+        Add products and calculate your bill with a flat 20% discount.
+    </p>
 
-<!-- List of added products -->
-<h3>Products:</h3>
-<table id="productList">
-  <thead>
-    <tr>
-      <th>Product</th>
-      <th>Price</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Products will appear here -->
-  </tbody>
-</table>
+    <div class="input-section">
 
-<!-- Button to calculate discount -->
-<button onclick="calculateTotal()">Calculate Total & Discount</button>
+        <div>
+            <label>Product Name</label>
+            <input type="text" id="product"
+                   placeholder="Enter product name">
+        </div>
 
-<div class="results" id="results"></div>
+        <div>
+            <label>Price (₹)</label>
+            <input type="number" id="price"
+                   placeholder="Price" min="0.01" step="0.01">
+        </div>
+
+        <div>
+            <label>Quantity</label>
+            <input type="number" id="quantity"
+                   value="1" min="1" step="1">
+        </div>
+
+        <button class="add-btn" onclick="addProduct()">
+            Add Product
+        </button>
+
+    </div>
+
+    <h3>Product List</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="productList">
+            <tr>
+                <td colspan="5">No products added yet.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="summary">
+
+        <h3>Bill Summary</h3>
+
+        <p>
+            <span>Total Products</span>
+            <strong id="productCount">0</strong>
+        </p>
+
+        <p>
+            <span>Subtotal</span>
+            <strong id="subtotal">₹0.00</strong>
+        </p>
+
+        <p class="discount">
+            <span>Discount (20%)</span>
+            <strong id="discount">₹0.00</strong>
+        </p>
+
+        <p class="final">
+            <span>Final Amount</span>
+            <strong id="finalAmount">₹0.00</strong>
+        </p>
+
+        <p class="discount">
+            <span>Total Savings</span>
+            <strong id="savings">₹0.00</strong>
+        </p>
+
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <div class="actions">
+        <button class="print-btn" onclick="printBill()">
+            Print Bill
+        </button>
+
+        <button class="clear-btn" onclick="clearBill()">
+            Clear Bill
+        </button>
+    </div>
+
+</div>
 
 <script>
-  const products = [];
 
-  function addProduct() {
-    const productInput = document.getElementById('product');
-    const priceInput = document.getElementById('price');
+    let products = [];
 
-    const productName = productInput.value.trim();
-    const productPrice = parseFloat(priceInput.value);
+    const DISCOUNT_RATE = 20;
 
-    if (!productName) {
-      alert('Please enter a product name.');
-      return;
-    }
-    if (isNaN(productPrice) || productPrice <= 0) {
-      alert('Please enter a valid positive price.');
-      return;
-    }
+    function addProduct() {
 
-    products.push({ name: productName, price: productPrice });
-    updateProductList();
+        const name = document.getElementById("product").value.trim();
+        const price = Number(document.getElementById("price").value);
+        const quantity = Number(document.getElementById("quantity").value);
 
-    // Clear inputs
-    productInput.value = '';
-    priceInput.value = '';
-  }
+        if (name === "") {
+            showMessage("Please enter product name.", "red");
+            return;
+        }
 
-  function updateProductList() {
-    const tbody = document.getElementById('productList').getElementsByTagName('tbody')[0];
-    tbody.innerHTML = '';
+        if (!Number.isFinite(price) || price <= 0) {
+            showMessage("Enter a valid positive price.", "red");
+            return;
+        }
 
-    products.forEach((prod, index) => {
-      const row = tbody.insertRow();
-      row.insertCell(0).innerText = prod.name;
-      row.insertCell(1).innerText = prod.price.toFixed(2);
-      const actionCell = row.insertCell(2);
-      const deleteBtn = document.createElement('button');
-      deleteBtn.innerText = 'Remove';
-      deleteBtn.onclick = () => {
-        products.splice(index, 1);
+        if (!Number.isInteger(quantity) || quantity <= 0) {
+            showMessage("Enter a valid whole quantity.", "red");
+            return;
+        }
+
+        products.push({
+            name: name,
+            price: price,
+            quantity: quantity
+        });
+
         updateProductList();
-      };
-      actionCell.appendChild(deleteBtn);
-    });
-  }
+        calculateTotal();
 
-  function getAutoDiscount(amount) {
-    if (amount >= 2000) return 30;
-    if (amount >= 1000) return 20;
-    return 0;
-  }
+        document.getElementById("product").value = "";
+        document.getElementById("price").value = "";
+        document.getElementById("quantity").value = 1;
 
-  function calculateTotal() {
-    const resultsDiv = document.getElementById('results');
-
-    if (products.length === 0) {
-      resultsDiv.innerHTML = "<p class='error'>Please add some products first.</p>";
-      return;
+        showMessage("Product added successfully!", "green");
     }
 
-    const totalAmount = products.reduce((sum, prod) => sum + prod.price, 0);
-    const discountPercentage = getAutoDiscount(totalAmount);
-    const discountAmount = (totalAmount * discountPercentage) / 100;
-    const finalAmount = totalAmount - discountAmount;
+    function updateProductList() {
 
-    resultsDiv.innerHTML = `
-      <div class="summary-card">
-        <h3>Order Summary</h3>
-        <p>Total products: ${products.length}</p>
-        <p>Total amount: ${totalAmount.toFixed(2)}</p>
-        <p>Discount applied: <strong>${discountPercentage}%</strong></p>
-        <p>Discount amount: ${discountAmount.toFixed(2)}</p>
-        <p><strong>Final amount after discount: ${finalAmount.toFixed(2)}</strong></p>
-      </div>
-    `;
-  }
+        const tbody = document.getElementById("productList");
+
+        tbody.innerHTML = "";
+
+        if (products.length === 0) {
+            tbody.innerHTML =
+                '<tr><td colspan="5">No products added yet.</td></tr>';
+            return;
+        }
+
+        products.forEach((item, index) => {
+
+            const row = document.createElement("tr");
+
+            const values = [
+                item.name,
+                "₹" + item.price.toFixed(2),
+                item.quantity,
+                "₹" + (item.price * item.quantity).toFixed(2)
+            ];
+
+            values.forEach(value => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.appendChild(cell);
+            });
+
+            const actionCell = document.createElement("td");
+            const deleteBtn = document.createElement("button");
+
+            deleteBtn.textContent = "Remove";
+            deleteBtn.className = "remove-btn";
+
+            deleteBtn.onclick = function() {
+                removeProduct(index);
+            };
+
+            actionCell.appendChild(deleteBtn);
+            row.appendChild(actionCell);
+
+            tbody.appendChild(row);
+
+        });
+    }
+
+    function removeProduct(index) {
+
+        products.splice(index, 1);
+
+        updateProductList();
+        calculateTotal();
+
+        showMessage("Product removed successfully!", "green");
+    }
+
+    function calculateTotal() {
+
+        const subtotal = products.reduce(
+            (sum, item) => sum + item.price * item.quantity, 0
+        );
+
+        const discountAmount = subtotal * DISCOUNT_RATE / 100;
+
+        const finalAmount = subtotal - discountAmount;
+
+        document.getElementById("productCount").textContent =
+            products.reduce((sum, item) => sum + item.quantity, 0);
+
+        document.getElementById("subtotal").textContent =
+            "₹" + subtotal.toFixed(2);
+
+        document.getElementById("discount").textContent =
+            "₹" + discountAmount.toFixed(2);
+
+        document.getElementById("finalAmount").textContent =
+            "₹" + finalAmount.toFixed(2);
+
+        document.getElementById("savings").textContent =
+            "₹" + discountAmount.toFixed(2);
+
+    }
+
+    function clearBill() {
+
+        products = [];
+
+        updateProductList();
+        calculateTotal();
+
+        document.getElementById("message").textContent = "";
+
+        document.getElementById("product").value = "";
+        document.getElementById("price").value = "";
+        document.getElementById("quantity").value = 1;
+
+    }
+
+    function showMessage(text, color) {
+
+        const message = document.getElementById("message");
+
+        message.textContent = text;
+        message.style.color = color;
+
+    }
+
+    function printBill() {
+
+        if (products.length === 0) {
+            showMessage("Add products before printing the bill.", "red");
+            return;
+        }
+
+        window.print();
+
+    }
+
 </script>
 
 </body>
