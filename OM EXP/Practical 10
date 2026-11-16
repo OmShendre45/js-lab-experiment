@@ -300,3 +300,19 @@
 
 </body>
 </html>
+
+
+
+. Software/Tools Required:
+1.	Visual Studio Code (VS Code) 
+2.	Google Chrome 
+3.	HTML5 
+4.	JavaScript
+
+2.	Theory:
+JSON (JavaScript Object Notation) is a lightweight format used to store and exchange data. JavaScript provides the Fetch API to request and process data asynchronously. jQuery provides the $.getJSON() method to load JSON data easily from a file or URL.
+In this experiment, JSON data is loaded using both the Fetch API and jQuery $.getJSON(). The retrieved JSON data is converted into JavaScript objects and processed dynamically. JavaScript is then used to create table rows and display the JSON data in an HTML table. This demonstrates asynchronous data loading, JSON handling, jQuery, and dynamic DOM manipulation.
+
+
+Result/Conclusion:
+The experiment was successfully performed. JSON data was loaded using the Fetch API and jQuery $.getJSON() method. The retrieved data was processed and dynamically displayed in an HTML table using JavaScript. The experiment successfully demonstrated JSON handling, asynchronous data loading, jQuery, and dynamic DOM manipulation. Thus, the objectives of the experiment were achieved successfully.
